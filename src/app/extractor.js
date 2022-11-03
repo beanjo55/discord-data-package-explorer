@@ -229,7 +229,7 @@ export const extractData = async (files) => {
 
     extractedData.channelCount = channels.filter(c => !c.isDM).length;
     extractedData.dmChannelCount = channels.length - extractedData.channelCount;
-    extractedData.topChannels = channels.filter(c => c.data && c.data.guild).sort((a, b) => b.messages.length - a.messages.length).slice(0, 10).map((channel) => ({
+    extractedData.topChannels = channels.filter(c => c.data && c.data.guild).sort((a, b) => b.messages.length - a.messages.length).slice(0, 25).map((channel) => ({
         name: channel.name,
         messageCount: channel.messages.length,
         guildName: channel.data.guild.name
@@ -269,7 +269,7 @@ export const extractData = async (files) => {
     extractedData.topDMs = channels
         .filter((channel) => channel.isDM)
         .sort((a, b) => b.messages.length - a.messages.length)
-        .slice(0, 10)
+        .slice(0, 25)
         .map((channel) => ({
             id: channel.data.id,
             dmUserID: channel.dmUserID,
